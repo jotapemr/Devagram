@@ -1,11 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default (
     req : NextApiRequest,
     res : NextApiResponse
 ) => {
     if(req.method === 'POST'){
-        const {login, senha} = req.body
+        const {login, senha} = req.body;
 
         if(login === 'admimadmim@.com' &&
         senha === 1234){
