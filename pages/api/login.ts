@@ -1,10 +1,10 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
-import {conectarMongoDB} from '../midllewares/conectarMongoDB'
-import type {RespostaPadraoMsg} from '../type/RespostaPadraoMsg'
+import {conectarMongoDB} from '../../midllewares/conectarMongoDB'
+import type {RespostaPadraoMsg} from '../../type/RespostaPadraoMsg'
 import md5 from 'md5';
-import { UsuarioModel } from '../models/UsuarioModels';
+import { UsuarioModel } from '../../models/UsuarioModels';
 import jwt from 'jsonwebtoken'
-import {LoginResposta} from '../type/LoginResposta'
+import {LoginResposta} from '../../type/LoginResposta'
 
 const endpointLogin = async (
     req : NextApiRequest,
