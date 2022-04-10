@@ -50,4 +50,12 @@ const handler = nc()
             return res.status(400).json({erro : e.toString()})
         }
 });
+
+export const config ={
+    api: {
+        bodyParser : false
+    }
+}
+
+
 export default conectarMongoDB(handler)
