@@ -22,15 +22,22 @@ const bucketPulblicacoes = Cosmic.bucket({
     write_key : CHAVE_GRAVACAO_PULBLICACOES
 })
 const storage = multer.memoryStorage()
-const upload = multer({})
+const upload = multer({storage : storage})
 
 
 const uploadImagemCosmic = async(req : any) => {
     if(req?.file?.originalname){
+
+        if(!req.file.originalname.includes('.png') &&
+            !req.file.originalname.includes('.jpg') && 
+            !req.file.originalname.includes('.jpeg')){
+                throw new Error('Extensao da imagem invalida');
+        } 
+
         const media_object = {
-            originalName: req.file.originalName,
-            buffer: req.file.buffer
-        }
+            originalname: req.file.originalname,
+            buffer : req.file.buffer
+        };
 
 
         if(req.url && req.method.includes('pulblicacao')){
