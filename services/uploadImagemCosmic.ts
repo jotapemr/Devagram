@@ -3,9 +3,9 @@ import cosmicjs from "cosmicjs";
 
 const {
     CHAVE_GRAVACAO_AVATARES,
-    CHAVE_GRAVACAO_PUBLICACOES,
+    CHAVE_GRAVACAO_PUBLICACAO,
     BUCKET_AVATARES,
-    BUCKET_PUBLICACOES} = process.env;
+    BUCKET_PUBLICACAO} = process.env;
 
 const Cosmic = cosmicjs();
 const bucketAvatares = Cosmic.bucket({
@@ -14,12 +14,12 @@ const bucketAvatares = Cosmic.bucket({
 });
 
 const bucketPublicacoes = Cosmic.bucket({
-    slug: BUCKET_PUBLICACOES,
-    write_key: CHAVE_GRAVACAO_PUBLICACOES
+    slug: BUCKET_PUBLICACAO,
+    write_key: CHAVE_GRAVACAO_PUBLICACAO
 });
 
 const storage = multer.memoryStorage();
-const updload = multer({storage : storage});
+const upload = multer({storage : storage});
 
 const uploadImagemCosmic = async(req : any) => {
     if(req?.file?.originalname){
@@ -27,7 +27,7 @@ const uploadImagemCosmic = async(req : any) => {
         if(!req.file.originalname.includes('.png') &&
             !req.file.originalname.includes('.jpg') && 
             !req.file.originalname.includes('.jpeg')){
-                throw new Error('Extensao da imagem invalida');
+                throw new Error('Extensão da imagem inválida');
         } 
 
         const media_object = {
@@ -43,4 +43,4 @@ const uploadImagemCosmic = async(req : any) => {
     }
 }
 
-export {updload, uploadImagemCosmic};
+export {upload, uploadImagemCosmic};

@@ -1,15 +1,15 @@
 import type {NextApiResponse} from 'next';
 import type { RespostaPadraoMsg } from '../../type/RespostaPadraoMsg';
 import nc from 'next-connect';
-import {updload, uploadImagemCosmic} from '../../services/uploadImagemCosmic';
+import {upload, uploadImagemCosmic} from '../../services/uploadImagemCosmic';
 import {conectarMongoDB} from '../../midllewares/conectarMongoDB';
 import {validarTokenJWT} from '../../midllewares/validarTokenJWT';
 import {PublicacaoModel} from '../../models/PublicacaoModel';
 import {UsuarioModel} from '../../models/UsuarioModels';
 
 const handler = nc()
-    .use(updload.single('file'))
-    .post (async (req : any, res : NextApiResponse<RespostaPadraoMsg>) => {
+    .use(upload.single('file'))
+    .post (async (req : any, res : NextApiResponse<RespostaPadraoMsg> | any) => {
         try{
             const {userId} = req.query;
             const usuario = await UsuarioModel.findById(userId);
