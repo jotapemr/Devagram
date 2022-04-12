@@ -10,8 +10,6 @@ export const conectarMongoDB = (handler: NextApiHandler) =>
         if(mongoose.connections[0].readyState){
             return handler(req, res)
         }
-        
-        //ja que não esta conectado vamos conectar
         //obter a variavel de ambiente preenchida do ENV
         const {DB_CONEXAO_STRING} = process.env
 
