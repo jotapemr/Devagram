@@ -3,7 +3,7 @@ import type {RespostaPadraoMsg} from '../../type/RespostaPadraoMsg'
 import { validarTokenJWT } from '../../midllewares/validarTokenJWT'
 import { conectarMongoDB } from '../../midllewares/conectarMongoDB'
 import { UsuarioModel } from '../../models/UsuarioModels'
-import {PublicacaoModel} from '../../models/PublicacaoModel';
+import {PublicacaoModel} from '../../models/PublicacaoModel'
 
 
 const feedEndpoint = async (req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg | any>) => {
