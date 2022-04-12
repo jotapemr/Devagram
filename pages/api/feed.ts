@@ -36,7 +36,7 @@ const feedEndpoint = async (req : NextApiRequest, res : NextApiResponse<Resposta
                         {idUsuario : seguidoresIds}
                     ]
                 })
-                .sort({data : -1})
+                .sort({data : -1}) //data mais próxima da atual deixando as pubs antigas por ultimo
 
                 const result = [];
                 for (const publicacao of publicacoes) {
