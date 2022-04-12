@@ -4,12 +4,12 @@ import type {UsuarioRequisicao} from '../../type/UsuarioRequisicao'
 import { UsuarioModel } from '../../models/UsuarioModels'
 import md5 from 'md5';
 import { conectarMongoDB } from '../../midllewares/conectarMongoDB'
-import {updload, uploadImagemCosmic} from '../../services/uploadImagemCosmic'
+import {upload, uploadImagemCosmic} from '../../services/uploadImagemCosmic'
 import nc from 'next-connect'
 
 
 const handler = nc()
-    .use(updload.single('file'))
+    .use(upload.single('file'))
     .post(async (req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg>) => {
         try{
             const usuario = req.body as UsuarioRequisicao;
