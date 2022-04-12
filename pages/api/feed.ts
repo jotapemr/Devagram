@@ -40,11 +40,11 @@ const feedEndpoint = async (req : NextApiRequest, res : NextApiResponse<Resposta
 
                 const result = [];
                 for (const publicacao of publicacoes) {
-                   const usuarioDaPublicacao = await UsuarioModel.findById(publicacao.idUsuario)
-                   if(usuarioDaPublicacao){
+                   const usuariodaPublicacao = await UsuarioModel.findById(publicacao.idUsuario)
+                   if(usuariodaPublicacao){
                         const final = {...publicacao._doc, usuario : {
-                            nome : usuarioDaPublicacao.nome,
-                            avatar : usuarioDaPublicacao.avatar
+                            nome : usuariodaPublicacao.nome,
+                            avatar : usuariodaPublicacao.avatar
                         }}
                         result.push(final)
                     }
