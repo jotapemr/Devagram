@@ -6,6 +6,7 @@ import {conectarMongoDB} from '../../midllewares/conectarMongoDB'
 import {validarTokenJWT} from '../../midllewares/validarTokenJWT'
 import {PublicacaoModel} from '../../models/PublicacaoModel'
 import {UsuarioModel} from '../../models/UsuarioModels'
+import {politicaCORS} from '../../midllewares/politicaCORS'
 
 const handler = nc()
     .use(upload.single('file'))
@@ -55,4 +56,4 @@ export const config = {
     }
 }
 
-export default validarTokenJWT(conectarMongoDB(handler))
+export default politicaCORS(validarTokenJWT(conectarMongoDB(handler)))
