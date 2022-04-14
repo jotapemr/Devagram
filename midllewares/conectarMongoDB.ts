@@ -1,5 +1,4 @@
 import type {NextApiRequest, NextApiResponse, NextApiHandler} from 'next'
-import moongose from 'mongoose'
 import mongoose from 'mongoose'
 import type {RespostaPadraoMsg} from '../type/RespostaPadraoMsg'
 
