@@ -10,7 +10,7 @@ import { politicaCORS } from '../../middlewares/politicaCORS';
 
 const handler = nc()
     .use(updload.single('file'))
-    .post(async (req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg>) => {
+    .post( async(req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg>) => {
         try{
             const usuario = req.body as CadastroRequisicao;
         
@@ -27,8 +27,9 @@ const handler = nc()
             if(!usuario.senha || usuario.senha.length < 4){
                 return res.status(400).json({erro : 'Senha inválida'});
             }
-    
+               
             const usuariosComMesmoEmail = await UsuarioModel.find({email : usuario.email});
+
             if(usuariosComMesmoEmail && usuariosComMesmoEmail.length > 0){
                 return res.status(400).json({erro : 'Já existe uma conta com o email informado'});
             }
@@ -41,7 +42,9 @@ const handler = nc()
                 senha : md5(usuario.senha),
                 avatar : image?.media?.url
             }
+
             await UsuarioModel.create(usuarioASerSalvo);
+            
             return res.status(200).json({msg : 'Usuário criado com sucesso'});
         }catch(e : any){
             console.log(e);
