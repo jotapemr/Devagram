@@ -5,7 +5,7 @@ import {updload, uploadImagemCosmic} from '../../services/uploadImagemCosmic';
 import {conectarMongoDB} from '../../midllewares/conectarMongoDB';
 import {validarTokenJWT} from '../../midllewares/validarTokenJWT';
 import {PublicacaoModel} from '../../models/PublicacaoModel';
-import {UsuarioModel} from '../../models/UsuarioModels';
+import {UsuarioModel} from '../../models/UsuarioModel';
 import { politicaCORS } from '../../midllewares/politicaCORS';
 
 const handler = nc()

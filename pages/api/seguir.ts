@@ -3,7 +3,7 @@ import { conectarMongoDB } from '../../midllewares/conectarMongoDB';
 import { politicaCORS } from '../../midllewares/politicaCORS';
 import { validarTokenJWT } from '../../midllewares/validarTokenJWT';
 import { SeguidorModel } from '../../models/SeguidorModel';
-import { UsuarioModel } from '../../models/UsuarioModels';
+import { UsuarioModel } from '../../models/UsuarioModel';
 import type {RespostaPadraoMsg} from '../../types/RespostaPadraoMsg';
 
 const endpointSeguir = 

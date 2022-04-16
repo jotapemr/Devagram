@@ -2,7 +2,7 @@ import type {NextApiRequest, NextApiResponse} from 'next';
 import { conectarMongoDB } from '../../midllewares/conectarMongoDB';
 import { politicaCORS } from '../../midllewares/politicaCORS';
 import { validarTokenJWT } from '../../midllewares/validarTokenJWT';
-import { UsuarioModel } from '../../models/UsuarioModels';
+import { UsuarioModel } from '../../models/UsuarioModel';
 import type {RespostaPadraoMsg} from '../../types/RespostaPadraoMsg';
 
 const pesquisaEndpoint 
