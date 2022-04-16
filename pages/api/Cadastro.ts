@@ -1,6 +1,6 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import type {RespostaPadraoMsg} from '../../type/RespostaPadraoMsg';
-import type {CadastroRequisicao} from '../../type/cadastroRequisicao';
+import type {CadastroRequisicao} from '../../type/CadastroRequisicao';
 import {UsuarioModel} from '../../models/UsuarioModels';
 import {conectarMongoDB} from '../../midllewares/conectarMongoDB';
 import md5 from 'md5';
