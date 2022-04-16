@@ -10,6 +10,7 @@ import { politicaCORS } from '../../middlewares/politicaCORS';
 
 const handler = nc()
     .use(updload.single('file'))
+
     .post( async(req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg>) => {
         try{
             const usuario = req.body as CadastroRequisicao;
@@ -43,7 +44,7 @@ const handler = nc()
                 avatar : image?.media?.url
             }
 
-            await UsuarioModel.create(usuarioASerSalvo);
+            await UsuarioModel.create(usuarioASerSalvo)
             
             return res.status(200).json({msg : 'Usuário criado com sucesso'});
         }catch(e : any){
