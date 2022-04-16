@@ -15,22 +15,22 @@ const handler = nc()
             const usuario = req.body as CadastroRequisicao;
         
             if(!usuario.nome || usuario.nome.length < 2){
-                return res.status(400).json({erro : 'Nome invalido'});
+                return res.status(400).json({erro : 'Nome inválido'});
             }
     
             if(!usuario.email || usuario.email.length < 5
                 || !usuario.email.includes('@')
                 || !usuario.email.includes('.')){
-                return res.status(400).json({erro : 'Email invalido'});
+                return res.status(400).json({erro : 'Email inválido'});
             }
     
             if(!usuario.senha || usuario.senha.length < 4){
-                return res.status(400).json({erro : 'Senha invalida'});
+                return res.status(400).json({erro : 'Senha inválida'});
             }
     
             const usuariosComMesmoEmail = await UsuarioModel.find({email : usuario.email});
             if(usuariosComMesmoEmail && usuariosComMesmoEmail.length > 0){
-                return res.status(400).json({erro : 'Ja existe uma conta com o email informado'});
+                return res.status(400).json({erro : 'Já existe uma conta com o email informado'});
             }
 
             const image = await uploadImagemCosmic(req);
@@ -42,12 +42,14 @@ const handler = nc()
                 avatar : image?.media?.url
             }
             await UsuarioModel.create(usuarioASerSalvo);
-            return res.status(200).json({msg : 'Usuario criado com sucesso'});
+            return res.status(200).json({msg : 'Usuário criado com sucesso'});
         }catch(e : any){
             console.log(e);
             return res.status(400).json({erro : e.toString()});
-        }
-});
+            
+        } 
+          
+    })
 
 export const config = {
     api: {
