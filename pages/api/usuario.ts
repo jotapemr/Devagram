@@ -1,11 +1,11 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import type {RespostaPadraoMsg} from '../../types/RespostaPadraoMsg';
-import {validarTokenJWT} from '../../midllewares/validarTokenJWT';
-import {conectarMongoDB} from '../../midllewares/conectarMongoDB';
+import {validarTokenJWT} from '../../middlewares/validarTokenJWT';
+import {conectarMongoDB} from '../../middlewares/conectarMongoDB';
 import { UsuarioModel } from '../../models/UsuarioModel';
 import nc from 'next-connect';
 import {updload, uploadImagemCosmic} from '../../services/uploadImagemCosmic';
-import { politicaCORS } from '../../midllewares/politicaCORS';
+import { politicaCORS } from '../../middlewares/politicaCORS';
 
 const handler = nc()
     .use(updload.single('file'))
