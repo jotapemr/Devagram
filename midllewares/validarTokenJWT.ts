@@ -1,27 +1,27 @@
 import type {NextApiRequest, NextApiResponse, NextApiHandler} from 'next';
-import type {RespostaPadraoMsg} from '../type/RespostaPadraoMsg';
+import type {RespostaPadraoMsg} from '../types/RespostaPadraoMsg';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export const validarTokenJWT = (handler : NextApiHandler) =>
-    (req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg | any>) => {
+    (req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg | any[]>) => {
 
     try{
-        const {MINHA_CHAVE_JWT} = process.env; //validar chave de acesso
+        const {MINHA_CHAVE_JWT} = process.env;
         if(!MINHA_CHAVE_JWT){
-            return res.status(500).json({ erro : 'ENV chave JWT nao informada na execução do projeto'});
+            return res.status(500).json({ erro : 'ENV chave JWT não informada na execução do projeto'});
         }
     
         if(!req || !req.headers){
-            return res.status(401).json({erro: 'Nao foi possivel validar o token de acesso'});
+            return res.status(401).json({erro: 'Não foi possivel validar o token de acesso'});
         }
         
-        if(req.method !== 'OPTIONS'){ //validar se o método é diferente de options
-            const authorization = req.headers['authorization'];//validar se veio header
+        if(req.method !== 'OPTIONS'){
+            const authorization = req.headers['authorization'];
             if(!authorization){
                 return res.status(401).json({erro: 'Não foi possivel validar o token de acesso'});
             }
     
-            const token = authorization.substring(7) //validar se veio token
+            const token = authorization.substring(7);
             if(!token){
                 return res.status(401).json({erro: 'Não foi possivel validar o token de acesso'});
             }
@@ -34,15 +34,12 @@ export const validarTokenJWT = (handler : NextApiHandler) =>
             if(!req.query){
                 req.query = {};
             }
-
-
     
             req.query.userId = decoded._id;
         }
-
     }catch(e){
         console.log(e);
-        return res.status(401).json({erro: 'Não foi possivel válidar o token de acesso'});    
+        return res.status(401).json({erro: 'Não foi possivel validar o token de acesso'});    
     }
 
     return handler(req, res);

@@ -4,7 +4,7 @@ import { politicaCORS } from '../../midllewares/politicaCORS';
 import { validarTokenJWT } from '../../midllewares/validarTokenJWT';
 import { SeguidorModel } from '../../models/SeguidorModel';
 import { UsuarioModel } from '../../models/UsuarioModels';
-import type {RespostaPadraoMsg} from '../../type/RespostaPadraoMsg';
+import type {RespostaPadraoMsg} from '../../types/RespostaPadraoMsg';
 
 const endpointSeguir = 
     async (req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg>) => {

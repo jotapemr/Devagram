@@ -4,7 +4,7 @@ import { politicaCORS } from "../../midllewares/politicaCORS";
 import { validarTokenJWT } from "../../midllewares/validarTokenJWT";
 import { PublicacaoModel } from "../../models/PublicacaoModel";
 import { UsuarioModel } from "../../models/UsuarioModels";
-import type {RespostaPadraoMsg} from '../../type/RespostaPadraoMsg';
+import type {RespostaPadraoMsg} from '../../types/RespostaPadraoMsg';
 
 const likeEndpoint 
     = async (req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg>) => {
