@@ -5,7 +5,7 @@ const {
     CHAVE_GRAVACAO_AVATARES,
     CHAVE_GRAVACAO_PUBLICACAO,
     BUCKET_AVATARES,
-    BUCKET_PUBLICACAO} = process.env;
+    BUCKET_PUBLICACAO,} = process.env;
 
 const Cosmic = cosmicjs();
 const bucketAvatares = Cosmic.bucket({
@@ -27,7 +27,7 @@ const uploadImagemCosmic = async(req : any) => {
         if(!req.file.originalname.includes('.png') &&
             !req.file.originalname.includes('.jpg') && 
             !req.file.originalname.includes('.jpeg')){
-                throw new Error('Extensão da imagem inválida');
+                throw new Error('Extensao da imagem invalida');
         } 
 
         const media_object = {
