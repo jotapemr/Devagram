@@ -19,7 +19,7 @@ const bucketPublicacoes = Cosmic.bucket({
 });
 
 const storage = multer.memoryStorage();
-const upload = multer({storage : storage});
+const updload = multer({storage : storage});
 
 const uploadImagemCosmic = async(req : any) => {
     if(req?.file?.originalname){
@@ -43,4 +43,4 @@ const uploadImagemCosmic = async(req : any) => {
     }
 }
 
-export {upload, uploadImagemCosmic};
+export {updload, uploadImagemCosmic};

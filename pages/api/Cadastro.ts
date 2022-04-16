@@ -4,12 +4,12 @@ import type {CadastroRequisicao} from '../../type/CadastroRequisicao';
 import {UsuarioModel} from '../../models/UsuarioModels';
 import {conectarMongoDB} from '../../midllewares/conectarMongoDB';
 import md5 from 'md5';
-import {upload, uploadImagemCosmic} from '../../services/uploadImagemCosmic';
+import {updload, uploadImagemCosmic} from '../../services/uploadImagemCosmic';
 import nc from 'next-connect';
 import { politicaCORS } from '../../midllewares/politicaCORS';
 
 const handler = nc()
-    .use(upload.single('file'))
+    .use(updload.single('file'))
     .post(async (req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg>) => {
         try{
             const usuario = req.body as CadastroRequisicao;
@@ -28,16 +28,13 @@ const handler = nc()
                 return res.status(400).json({erro : 'Senha invalida'});
             }
     
-            // validacao se ja existe usuario com o mesmo email
             const usuariosComMesmoEmail = await UsuarioModel.find({email : usuario.email});
             if(usuariosComMesmoEmail && usuariosComMesmoEmail.length > 0){
                 return res.status(400).json({erro : 'Ja existe uma conta com o email informado'});
             }
 
-            // enviar a imagem do multer para o cosmic
             const image = await uploadImagemCosmic(req);
     
-            // salvar no banco de dados
             const usuarioASerSalvo = {
                 nome : usuario.nome,
                 email : usuario.email,

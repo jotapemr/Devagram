@@ -1,30 +1,28 @@
-import type {NextApiRequest, NextApiResponse} from 'next'
-import { conectarMongoDB } from '../../midllewares/conectarMongoDB'
-import { validarTokenJWT } from '../../midllewares/validarTokenJWT'
-import { PublicacaoModel } from '../../models/PublicacaoModel'
-import { UsuarioModel } from '../../models/UsuarioModels'
-import type {RespostaPadraoMsg} from '../../type/RespostaPadraoMsg'
-import {politicaCORS} from '../../midllewares/politicaCORS'
+import type {NextApiRequest, NextApiResponse} from 'next';
+import { conectarMongoDB } from '../../midllewares/conectarMongoDB';
+import { politicaCORS } from '../../midllewares/politicaCORS';
+import { validarTokenJWT } from '../../midllewares/validarTokenJWT';
+import { PublicacaoModel } from '../../models/PublicacaoModel';
+import { UsuarioModel } from '../../models/UsuarioModels';
+import type {RespostaPadraoMsg} from '../../type/RespostaPadraoMsg';
 
-
-
-const comentarioEndpoint = async (req: NextApiRequest, res: NextApiResponse<RespostaPadraoMsg>) => {
-    
+const comentarioEndpoint = async (req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg>) => {
     try{
         if(req.method === 'PUT'){
-            const {userId, id} = req.query
-            const usuarioLogado = await UsuarioModel.findById(userId)
+            const {userId, id} = req.query;
+            const usuarioLogado = await UsuarioModel.findById(userId);
             if(!usuarioLogado){
-                return res.status(400).json({erro : 'Usuário não encontrado'})
+                return res.status(400).json({erro : 'Usuario nao encontrado'});
             }
-
-            const publicacao =  await PublicacaoModel.findById(id)
+            
+            const publicacao =  await PublicacaoModel.findById(id);
             if(!publicacao){
-                return res.status(400).json({erro : 'Publicação não encontrada'})
+                return res.status(400).json({erro : 'Publicacao nao encontrada'});
             }
 
-            if(!req.body || !req.body.comentario || req.body.comentario.length < 2){
-                return res.status(400).json({erro : 'Comentário não é válido'})
+            if(!req.body || !req.body.comentario
+                || req.body.comentario.length < 2){
+                return res.status(400).json({erro : 'Comentario nao e valido'});
             }
 
             const comentario = {
@@ -32,18 +30,17 @@ const comentarioEndpoint = async (req: NextApiRequest, res: NextApiResponse<Resp
                 nome : usuarioLogado.nome,
                 comentario : req.body.comentario
             }
-            publicacao.comentarios.push(comentario)
-            await PublicacaoModel.findByIdAndUpdate({_id : publicacao._id}, publicacao)
-            return res.status(200).json({msg : 'Comentário adicionado com sucesso'})
 
+            publicacao.comentarios.push(comentario);
+            await PublicacaoModel.findByIdAndUpdate({_id : publicacao._id}, publicacao);
+            return res.status(200).json({msg : 'Comentario adicionado com sucesso'});
         }
-        return res.status(405).json({erro : 'Método informado não é válido'})
-
+        
+        return res.status(405).json({erro : 'Metodo informado nao e valido'});
     }catch(e){
-        console.log(e)
-        return res.status(500).json({erro : 'Ocorreu um erro ao adicionar comentário'})
+        console.log(e);
+        return res.status(500).json({erro : 'Ocorreu erro ao adicionar comentario'});
     }
-
 }
 
-export default politicaCORS(validarTokenJWT(conectarMongoDB(comentarioEndpoint)))
+export default politicaCORS(validarTokenJWT(conectarMongoDB(comentarioEndpoint)));
