@@ -1,6 +1,6 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import { conectarMongoDB } from '../../middlewares/conectarMongoDB';
-import { politicacors } from '../../middlewares/cors';
+import { politicaCORS } from '../../middlewares/politicaCORS';
 import { validarTokenJWT } from '../../middlewares/validarTokenJWT';
 import { SeguidorModel } from '../../models/SeguidorModel';
 import { UsuarioModel } from '../../models/UsuarioModel';
@@ -61,4 +61,4 @@ const endpointSeguir =
     }
 }
 
-export default politicacors(validarTokenJWT(conectarMongoDB(endpointSeguir)));
+export default politicaCORS(validarTokenJWT(conectarMongoDB(endpointSeguir)));

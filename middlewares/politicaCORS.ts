@@ -2,13 +2,13 @@ import type {NextApiRequest, NextApiResponse, NextApiHandler} from 'next';
 import type {RespostaPadraoMsg} from '../types/RespostaPadraoMsg';
 import NextCors from 'nextjs-cors';
 
-export const politicacors = (handler : NextApiHandler) =>
+export const politicaCORS = (handler : NextApiHandler) =>
     async (req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg>) => {
     try{
         await NextCors(req, res, {
             origin : '*',
             methods : ['GET', 'POST', 'PUT'],
-            optionsSuccessStatus : 200, 
+            optionsSuccessStatus : 200, // navegadores antigos dao problema quando se retorna 204
         });
 
         return handler(req, res);
