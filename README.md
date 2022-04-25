@@ -1,5 +1,5 @@
 # Devagram
-Next.js project using Typescript, with integration to<a href="https://github.com/jotapemr/Devagram-react">front-end on here</a>
+Next.js project using Typescript, with integration to<a href="https://github.com/jotapemr/Devagram-react"> front-end on here</a>
 
 ## Dependencies
 - next 12.1.0
