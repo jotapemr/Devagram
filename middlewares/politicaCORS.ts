@@ -5,7 +5,7 @@ import NextCors from 'nextjs-cors'
 export const politicaCORS = (handler : NextApiHandler) =>
     async (req : NextApiRequest, res : NextApiResponse<RespostaPadraoMsg>) => {
     try{
-         NextCors(req, res, {
+        await NextCors(req, res, {
             origin : '*',
             methods : ['GET', 'POST', 'PUT'],
             optionsSuccessStatus : 200, // navegadores antigos dao problema quando se retorna 204
