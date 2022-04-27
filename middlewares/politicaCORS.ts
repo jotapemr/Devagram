@@ -7,7 +7,7 @@ export const politicaCORS = (handler : NextApiHandler) =>
     try{
         await NextCors(req, res, {
             origin : '*',
-            methods : ['GET', 'POST', 'PUT', 'DELETE'],
+            methods : ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'CONNECT'],
             optionsSuccessStatus : 200, 
         });
 
